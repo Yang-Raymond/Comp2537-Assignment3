@@ -86,6 +86,7 @@ let totalPairs = 0;
 let timeLeft = 60;
 let timerId;
 let gameRunning = false;
+let powerUpUsed = false;
 
 function resetTurn() {
   firstCard = undefined;
@@ -103,6 +104,9 @@ function game() {
   clicks = 0;
   timeLeft = config.timeLimit;
   totalPairs = $(".card").length / 2;
+  powerUpUsed = false;
+
+  $("#power-up-button").prop("disabled", false);
   function updateStats() {
     $("#clicks").text(clicks);
     $("#pairs-matched").text(matchedPairs);
@@ -135,10 +139,12 @@ function game() {
     clicks = 0;
     timeLeft = DIFFICULTY_CONFIG[currentDifficulty].timeLimit;
     gameRunning = false;
+    powerUpUsed = false;
     updateStats();
     $(".card").removeClass("flip matched").off("click");
     $("#start-button").prop("disabled", false);
     $("#reset-button").prop("disabled", true);
+    $("#power-up-button").prop("disabled", true);
     $(".difficulty-btn").prop("disabled", false);
     $("#game_grid").addClass("dimmed");
   }
@@ -207,6 +213,7 @@ $(document).ready(() => {
   $("#start-button").off("click");
   $(".difficulty-btn").off("click");
   $("#theme-toggle").off("click");
+  $("#power-up-button").off("click");
   function updateHeaderForDifficulty(difficulty) {
     const config = DIFFICULTY_CONFIG[difficulty];
     const numberOfCards = config.cardCount;
@@ -235,14 +242,16 @@ $(document).ready(() => {
     clicks = 0;
     timeLeft = DIFFICULTY_CONFIG[currentDifficulty].timeLimit;
     gameRunning = false;
+    powerUpUsed = false;
     $("#clicks").text(clicks);
     $("#pairs-matched").text(matchedPairs);
     $("#pairs-left").text(totalPairs - matchedPairs);
     $("#total-pairs").text(totalPairs);
     $("#time-left").text(timeLeft);
-    $(".card").removeClass("flip matched").off("click");
+    $(".card").removeClass("flip matched temp-flip").off("click");
     $("#start-button").prop("disabled", false);
     $("#reset-button").prop("disabled", true);
+    $("#power-up-button").prop("disabled", true);
     $(".difficulty-btn").prop("disabled", false);
     $("#game_grid").addClass("dimmed");
   });
@@ -256,7 +265,25 @@ $(document).ready(() => {
     $("#game_grid").removeClass("dimmed");
     game();
   });
+  
+  $("#power-up-button").on("click", function() {
+    if (powerUpUsed || !gameRunning) return;
+    
+    lockBoard = true; 
+    const unflippedCards = $(".card").not(".flip").not(".matched");
+    unflippedCards.addClass("temp-flip flip");
+    
+    powerUpUsed = true;
+    $(this).prop("disabled", true);
+
+    setTimeout(() => {
+      $(".temp-flip").removeClass("temp-flip flip");
+      lockBoard = false; 
+    }, 1000);
+  });
+  
   $("#reset-button").prop("disabled", true);
+  $("#power-up-button").prop("disabled", true);
   $("#game_grid").addClass("dimmed");
   $("#theme-toggle").on("click", function () {
     $("body").toggleClass("dark-mode");
