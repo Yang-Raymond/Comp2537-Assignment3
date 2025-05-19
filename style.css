@@ -1,0 +1,186 @@
+body {
+  margin: 0px;
+}
+
+#game_grid {
+  border: 2px tomato solid;
+  width: 600px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#game_grid.easy {
+  height: 400px;
+}
+
+#game_grid.medium {
+  height: 500px;
+}
+
+#game_grid.hard {
+  height: 600px;
+}
+
+.card {
+  position: relative;
+  transition: transform 1s;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+#game_grid.easy .card {
+  width: 33.3%;
+  height: 33.3%;
+}
+
+#game_grid.medium .card {
+  width: 25%;
+  height: 25%;
+}
+
+#game_grid.hard .card {
+  width: 20%;
+  height: 20%;
+}
+
+img {
+  width: 100%
+}
+
+.front_face,
+.back_face {
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.flip {
+  transform: rotateY(180deg);
+}
+
+.front_face {
+  transform: rotateY(180deg);
+}
+
+#game-stats {
+  width: 600px;
+  margin: 20px auto;
+  padding: 10px;
+  border: 2px solid lightgray;
+  display: flex;
+  justify-content: space-around;
+  font-family: sans-serif;
+}
+
+#game-stats p {
+  margin: 0;
+}
+
+#controls {
+  width: 600px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+#controls button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+#controls button:disabled {
+  background-color: #cccccc;
+  color: #888888;
+  border-color: #aaaaaa;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+#difficulty-controls {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.difficulty-btn {
+  padding: 8px 15px;
+  font-size: 14px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.difficulty-btn.active {
+  background-color: #4CAF50;
+  color: white;
+  border-color: #388E3C;
+}
+
+#theme-control {
+  margin-top: 15px;
+  text-align: center;
+}
+
+#theme-toggle {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+}
+
+body.dark-mode #game_grid {
+  border-color: #ff6347;
+}
+
+body.dark-mode #game-stats {
+  border-color: #555;
+}
+
+body.dark-mode #controls button {
+  background-color: #333;
+  color: #f0f0f0;
+  border-color: #555;
+}
+
+body.dark-mode #controls button:hover {
+  background-color: #444;
+}
+
+body.dark-mode #controls button:disabled {
+  background-color: #222222;
+  color: #666666;
+  border-color: #444444;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+body.dark-mode .difficulty-btn {
+  background-color: #333;
+  color: #f0f0f0;
+  border-color: #555;
+}
+
+body.dark-mode .difficulty-btn.active {
+  background-color: #388E3C;
+  color: white;
+  border-color: #2E7D32;
+}
+
+body.dark-mode .card {
+  background-color: #333;
+}
+
+body.dark-mode #theme-toggle {
+  background-color: #333;
+  color: #f0f0f0;
+  border-color: #555;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- import jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="index.js"></script>
+</head>
+
+<body>
+  <div id="controls">
+    <button id="start-button">Start Game</button>
+    <button id="reset-button">Reset Game</button>
+    <div id="difficulty-controls">
+      <label>Difficulty:</label>
+      <button class="difficulty-btn active" data-difficulty="easy">Easy</button>
+      <button class="difficulty-btn" data-difficulty="medium">Medium</button>
+      <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+    </div>
+    <div id="theme-control">
+      <button id="theme-toggle">Switch to Dark Mode</button>
+    </div>
+  </div>
+  <header id="game-stats">
+    <p>Difficulty: <span id="current-difficulty">Easy</span></p>
+    <p>Clicks: <span id="clicks">0</span></p>
+    <p>Pairs Left: <span id="pairs-left">3</span></p>
+    <p>Pairs Matched: <span id="pairs-matched">0</span></p>
+    <p>Total Pairs: <span id="total-pairs">3</span></p>
+    <p>Time Left: <span id="time-left">60</span>s</p>
+  </header>
+  <div id="game_grid">
+    <div class="card">
+      <img id="img1" class="front_face" src="001.png" alt="">
+      <img class="back_face" src="back.webp" alt="">
+    </div>
+    <div class="card">
+      <img id="img2" class="front_face" src="002.png" alt="">
+      <img class="back_face" src="back.webp" alt="">
+    </div>
+    <div class="card">
+      <img id="img3" class="front_face" src="003.png" alt="">
+      <img class="back_face" src="back.webp" alt="">
+    </div>
+    <div class="card">
+      <img id="img4" class="front_face" src="001.png" alt="">
+      <img class="back_face" src="back.webp" alt="">
+    </div>
+    <div class="card">
+      <img id="img5" class="front_face" src="002.png" alt="">
+      <img class="back_face" src="back.webp" alt="">
+    </div>
+    <div class="card">
+      <img id="img6" class="front_face" src="003.png" alt="">
+      <img class="back_face" src="back.webp" alt="">
+    </div>
+  </div>
+</body>
+
+</html>
